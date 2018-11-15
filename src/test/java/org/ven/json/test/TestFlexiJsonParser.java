@@ -16,7 +16,7 @@ public class TestFlexiJsonParser {
 	@Test
 	public void test1() throws IOException {
 		// Get the document
-		String jsonFile = System.getProperty("user.dir") + "\\src\\test\\resources\\documents\\test1.json";
+		String jsonFile = ".\\src\\test\\resources\\documents\\test1.json";
 		String jsonStr = FileUtils.readFileToString(new File(jsonFile), "UTF-8");
 		IFlexiJsonParser flexiParser = new FlexiJsonParserImpl();
 		
