@@ -2,6 +2,7 @@ package org.ven.json.test;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
@@ -14,10 +15,10 @@ import org.ven.json.IFlexiJsonParser;
 
 public class TestFlexiJsonParser {
 	@Test
-	public void test1() throws IOException {
-		// Get the document
-		String jsonFile = ".\\src\\test\\resources\\documents\\test1.json";
-		String jsonStr = FileUtils.readFileToString(new File(jsonFile), "UTF-8");
+	public void test1() throws IOException, URISyntaxException {
+		ClassLoader classLoader = getClass().getClassLoader();
+		File jsonFile = new File(classLoader.getResource("test1.json").getFile());			
+		String jsonStr = FileUtils.readFileToString(jsonFile, "UTF-8");
 		IFlexiJsonParser flexiParser = new FlexiJsonParserImpl();
 		
 		// Perform the test		
