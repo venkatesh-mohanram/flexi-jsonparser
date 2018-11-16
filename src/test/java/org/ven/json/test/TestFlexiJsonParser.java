@@ -30,4 +30,22 @@ public class TestFlexiJsonParser {
 		// Assert the result
 		Assert.assertEquals(expectedJson.toString(), result.toString());		
 	}
+	@Test
+	public void test2() throws IOException, URISyntaxException {
+		ClassLoader classLoader = getClass().getClassLoader();
+		File jsonFile = new File(classLoader.getResource("test1.json").getFile());			
+		String jsonStr = FileUtils.readFileToString(jsonFile, "UTF-8");
+		IFlexiJsonParser flexiParser = new FlexiJsonParserImpl();
+		
+		// Perform the test		
+		JSONObject result = flexiParser.parseDocument(jsonStr, "$.quiz.maths.q1");
+		
+		// Expected result
+		jsonFile = new File(classLoader.getResource("expected2.json").getFile());			
+		jsonStr = FileUtils.readFileToString(jsonFile, "UTF-8");
+		JSONObject expectedJson = new JSONObject(jsonStr);
+		
+		// Assert the result
+		Assert.assertEquals(expectedJson.toString(), result.toString());		
+	}
 }
